@@ -1,20 +1,15 @@
-N, M = map(int, input().split())
-arr = list(map(int, input().split()))
+import heapq
 
-i = 0
-while True:
-    arr.sort()
-    if i == M:
-        break
+n, m = map(int, input().split())
+cards = list(map(int, input().split()))
+heapq.heapify(cards)
 
-    a = arr.pop(0)
-    b = arr.pop(0)
+for i in range(m):
+    x = heapq.heappop(cards)
+    y = heapq.heappop(cards)
 
-    c = a + b
-    arr.append(c)
-    arr.append(c)
+    temp = x + y
+    heapq.heappush(cards, temp)
+    heapq.heappush(cards, temp)
 
-    i += 1
-
-answer = sum(arr)
-print(answer)
+print(sum(cards))
